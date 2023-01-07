@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>高等代数</title>
+      <link href="/2023/01/06/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0/%E7%AC%AC%E4%B8%80%E7%AB%A0/"/>
+      <url>/2023/01/06/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0/%E7%AC%AC%E4%B8%80%E7%AB%A0/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 高等代数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2023/01/01/hello-world/"/>
       <url>/2023/01/01/hello-world/</url>
@@ -34,28 +53,6 @@
     
     <entry>
       <title></title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>link</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
       <link href="/css/custom.css"/>
       <url>/css/custom.css</url>
       
@@ -67,8 +64,8 @@
     
     <entry>
       <title></title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -88,9 +85,9 @@
     
     
     <entry>
-      <title></title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
+      <title>link</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
