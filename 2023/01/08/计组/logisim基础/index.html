@@ -1,0 +1,342 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>logisim基础 | Kafkaの旅</title><meta name="author" content="Kafka"><meta name="copyright" content="Kafka"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Logisim学习笔记常用元器件Gates 门1.Odd Parity 奇校验&#x2F;Even Parity 偶校验对于奇校验，若数据中有奇数个“1”，则校验结果为1，若数据中有偶数个“1”，则校验结果为0； 对于偶校验，若数据中有偶数个“1”，则校验结果为1，若数据中有奇数个“1”，则校验结果为0。  2.Controlled Buffer 受控缓冲器&#x2F;三态门 Plexers 复用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="logisim基础">
+<meta property="og:url" content="http://example.com/2023/01/08/%E8%AE%A1%E7%BB%84/logisim%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Kafkaの旅">
+<meta property="og:description" content="Logisim学习笔记常用元器件Gates 门1.Odd Parity 奇校验&#x2F;Even Parity 偶校验对于奇校验，若数据中有奇数个“1”，则校验结果为1，若数据中有偶数个“1”，则校验结果为0； 对于偶校验，若数据中有偶数个“1”，则校验结果为1，若数据中有奇数个“1”，则校验结果为0。  2.Controlled Buffer 受控缓冲器&#x2F;三态门 Plexers 复用">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301062024793.png">
+<meta property="article:published_time" content="2023-01-08T08:01:02.000Z">
+<meta property="article:modified_time" content="2023-01-08T08:22:58.722Z">
+<meta property="article:author" content="Kafka">
+<meta property="article:tag" content="BUAA_CO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301062024793.png"><link rel="shortcut icon" href="https://s2.loli.net/2023/01/02/QxkorupPZNTn7GS.png"><link rel="canonical" href="http://example.com/2023/01/08/%E8%AE%A1%E7%BB%84/logisim%E5%9F%BA%E7%A1%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":1000},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'logisim基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-08 16:22:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2023/01/02/gxzDbVSKJ41L69j.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301062024793.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Kafkaの旅</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">logisim基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-01-08T08:01:02.000Z" title="Created 2023-01-08 16:01:02">2023-01-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-01-08T08:22:58.722Z" title="Updated 2023-01-08 16:22:58">2023-01-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>6min</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Logisim学习笔记"><a href="#Logisim学习笔记" class="headerlink" title="Logisim学习笔记"></a>Logisim学习笔记</h1><h2 id="常用元器件"><a href="#常用元器件" class="headerlink" title="常用元器件"></a>常用元器件</h2><h3 id="Gates-门"><a href="#Gates-门" class="headerlink" title="Gates 门"></a>Gates 门</h3><h4 id="1-Odd-Parity-奇校验-x2F-Even-Parity-偶校验"><a href="#1-Odd-Parity-奇校验-x2F-Even-Parity-偶校验" class="headerlink" title="1.Odd Parity 奇校验&#x2F;Even Parity 偶校验"></a>1.Odd Parity 奇校验&#x2F;Even Parity 偶校验</h4><p>对于奇校验，若数据中有奇数个“1”，则校验结果为1，若数据中有偶数个“1”，则校验结果为0； 对于偶校验，若数据中有偶数个“1”，则校验结果为1，若数据中有奇数个“1”，则校验结果为0。</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081604500.png" alt="img"></p>
+<h4 id="2-Controlled-Buffer-受控缓冲器-x2F-三态门"><a href="#2-Controlled-Buffer-受控缓冲器-x2F-三态门" class="headerlink" title="2.Controlled Buffer 受控缓冲器&#x2F;三态门"></a>2.Controlled Buffer 受控缓冲器&#x2F;三态门</h4><p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081607286.png" alt="img"></p>
+<h3 id="Plexers-复用器"><a href="#Plexers-复用器" class="headerlink" title="Plexers 复用器"></a>Plexers 复用器</h3><h4 id="1-Multiplexer-多路选择器-MUX"><a href="#1-Multiplexer-多路选择器-MUX" class="headerlink" title="1.Multiplexer 多路选择器 MUX"></a>1.Multiplexer 多路选择器 <strong>MUX</strong></h4><p>​        多路选择器将西面端口的输入复制到东面输出（多输入，一输出）。要输出哪个值是通过元件下端输入端口接收到的值确定的。</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081604507.png" alt="图1 多路选择器示例"></p>
+<h4 id="2-Demultiplexer-解复用器-DMX"><a href="#2-Demultiplexer-解复用器-DMX" class="headerlink" title="2.Demultiplexer 解复用器 DMX"></a>2.Demultiplexer 解复用器 <strong>DMX</strong></h4><p>​        将西面边缘的输入复制到东面边缘的某个输出，是输出中哪一个是通过南侧的输入接收到的值指定的。</p>
+<p>常用来写寄存器数据（给定一个地址输入信号，指定寄存器堆中的一个作为写入的目标寄存器</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081607490.png" alt="图2 解复用器示例"></p>
+<h5 id="Three-state-三态选项"><a href="#Three-state-三态选项" class="headerlink" title="Three-state?三态选项"></a>Three-state?三态选项</h5><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081609348.png">
+
+<p>三态未开，DMX默认未被复制端为0，可输出</p>
+<img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081604515.png" alt="image-20221002092347159" style="zoom: 67%;" />
+
+<p>三态开，DMX默认未被复制端为x，不可输出</p>
+<h4 id="3-Decoder-译码器-Decd"><a href="#3-Decoder-译码器-Decd" class="headerlink" title="3.Decoder 译码器 Decd"></a>3.Decoder 译码器 Decd</h4><p>​       输出端从上到下编号，第一个编号为0。如果输出端的编号与当前通过南部的选择输入接收到的值相等，则这个端口的输出将为1，否则，它的值将是0或浮动，这取决于Three-State?（是否三态）属性。如果选择输入包含任何未指定的位，则所有输出都是浮动的。</p>
+<p>三态功能同上</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081605460.png" alt="图3 译码器示例"></p>
+<p><strong>真正的作用是将二进制编码转换为独热码。</strong></p>
+<h4 id="4-Pirority-Encoder-优先编码器-Pri"><a href="#4-Pirority-Encoder-优先编码器-Pri" class="headerlink" title="4.Pirority Encoder 优先编码器 Pri"></a>4.Pirority Encoder 优先编码器 <strong>Pri</strong></h4><p>​        组件在其西边有多个输入，第一个输入编号为0，从上往下编号。该组件寻找值为1的输入的编号，并输出值最大的编号。例如，如果输入端编号为0、2、5和6的输入都是1，那么优先级编码器将输出 110（也就是编号6的二进制表示）。如果没有输入为1，或者组件被禁用，那么优先级编码器的输出是浮动的。</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081608536.png" alt="图4 优先编码器示例"></p>
+<h4 id="5-Bit-Selector-位选择器-Sel"><a href="#5-Bit-Selector-位选择器-Sel" class="headerlink" title="5.Bit Selector 位选择器 Sel"></a>5.Bit Selector 位选择器 Sel</h4><p>​        给定一个 n 位的输入，将把输入分成几个大小相等的组(从最低阶位开始)。如果输出为 m 位，则一共分成 <img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081614558.gif" alt="\left \lceil \frac{n}{m} \right \rceil"> 组（但是编号从 0 开始），并输出选择输入所选择的组。(为什么公式lceil炫不出来？)<br> 例如，如果我们有一个 8 位的输入01010101，而我们要有一个 3 位的输出，那么8&#x2F;3向上取余&#x3D;3。0 组将是最低阶的 3 位 101，1 组将是接下来的 3 位 010，2 组将是接下来的 3 位 001（顶部以外的位用0填充)。选择输入的位宽将是 2，选择这三组中的哪一组输出，但如果选择输入是3，那么将输出 000</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081610902.png" alt="图5 位选择器示例"></p>
+<h3 id="Arithmetic-运算器（部分）"><a href="#Arithmetic-运算器（部分）" class="headerlink" title="Arithmetic 运算器（部分）"></a>Arithmetic 运算器（部分）</h3><h4 id="1-Negator-取反器"><a href="#1-Negator-取反器" class="headerlink" title="1.Negator 取反器"></a>1.Negator 取反器</h4><p><strong>取输入的相反数补码输出</strong></p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081605737.png" alt="img"></p>
+<h4 id="2-Shifter-移位器"><a href="#2-Shifter-移位器" class="headerlink" title="2.Shifter 移位器"></a>2.Shifter 移位器</h4><p>逻辑左移</p>
+<pre><code>    数据中的所有位向左移动 dist 位，底部空出的位用 0 填充。例如，11001011逻辑左移两次就是00101100（之前的右边两位丢弃）
+</code></pre>
+<p>逻辑右移</p>
+<pre><code>    数据中的所有位向右移动 dist 位，左端空出的位用 0 填充。例如，11001011逻辑右移两次就是00110010（之前的左边两位丢弃)
+</code></pre>
+<p>算术右移</p>
+<pre><code>    数据中的所有位向右移动 dist 位，左端空出的位用数据中最高位重复填充。例如，11001011算术右移两次就是11110010（之前最高位为 1，所以用 1 填充）
+</code></pre>
+<p>循环左移</p>
+<pre><code>    数据中的所有位都向左移动 dist 位，左边被“挤出去”的位填充到右边空出的位。例如，将11001011循环左移两次就是00101111。
+</code></pre>
+<p>循环右移</p>
+<pre><code>    数据中的所有位都向右移动 dist 位，右边被“挤出去”的位填充到左边空出的位。例如，将11001011循环右移两次就是11110010。
+</code></pre>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081604507.png" alt="img"></p>
+<h4 id="3-Bit-Adder-逐位加法器"><a href="#3-Bit-Adder-逐位加法器" class="headerlink" title="3.Bit Adder 逐位加法器"></a>3.Bit Adder 逐位加法器</h4><p><strong>常用来计算输入中1位&#x2F;0位的数量</strong></p>
+<p>逐位加法器计算并输出：输入中有多少位是<strong>1</strong>。</p>
+<p>例如，给定8位输入10011101，输出将是5，因为在输入中有5个1位(第一个，最后一个，以及中间的一个由3位组成的字符串)。</p>
+<p>逐位加法器可以有多个输入，表示多个输入中位为1的数量的总和</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081605920.png" alt="img"></p>
+<h4 id="4-Bit-Finder-位查找器"><a href="#4-Bit-Finder-位查找器" class="headerlink" title="4.Bit Finder 位查找器"></a>4.Bit Finder 位查找器</h4><p><strong>功能：找位</strong></p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081610809.png" alt="image-20221002095017254"></p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081610656.png" alt="img"></p>
+<h2 id="有限状态机"><a href="#有限状态机" class="headerlink" title="有限状态机"></a>有限状态机</h2><p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081620872.png" alt="image-20220924153534626"></p>
+<p>要点：</p>
+<h3 id="Mealy型和Moore型"><a href="#Mealy型和Moore型" class="headerlink" title="Mealy型和Moore型"></a>Mealy型和Moore型</h3><h4 id="状态转移-x2F-次态逻辑无需考虑Mealy和Moore型的区别。"><a href="#状态转移-x2F-次态逻辑无需考虑Mealy和Moore型的区别。" class="headerlink" title="状态转移&#x2F;次态逻辑无需考虑Mealy和Moore型的区别。"></a>状态转移&#x2F;次态逻辑无需考虑Mealy和Moore型的区别。</h4><p>二者在输出逻辑上产生不同。</p>
+<p>Mealy型输出逻辑：输出是状态和输入的函数。</p>
+<p>Moore型输出逻辑：输出仅是状态的函数。</p>
+<h4 id="Mealy-or-Moore"><a href="#Mealy-or-Moore" class="headerlink" title="Mealy or Moore?"></a>Mealy or Moore?</h4><p>Mealy型：输出窄、输出早。</p>
+<p>以verilog指令为例: (state &#x3D;&#x3D; &#96;S3 &amp;&amp; input &#x3D;&#x3D; 1) ? 1:-1;</p>
+<p>Moore型：输出信号宽。</p>
+<p>以verilog指令为例: (state &#x3D;&#x3D; &#96;S4) ? 1:-1;</p>
+<p>总结：</p>
+<p>对输出信号宽度有要求：Moore型。</p>
+<p>对输出信号时间有要求（越早越好）:Mealy型。</p>
+<h2 id="使用时序电路实现函数计算"><a href="#使用时序电路实现函数计算" class="headerlink" title="使用时序电路实现函数计算"></a>使用时序电路实现函数计算</h2><p>常用形式为F(n)&#x3D;S(F(n-1),F(n-2),······)。思路是将当前值存在寄存器中，下一周期更新等价于实现一次推移。</p>
+<p>以计算S(x) &#x3D; S(x-1) + S(x-2)&amp;S(x-3) 为例</p>
+<h3 id="状态转移"><a href="#状态转移" class="headerlink" title="状态转移"></a>状态转移</h3><p>思想是S(x)在下一周期变为S(x-1),S(x-1)在下一周期变为S(x-2)…….依次类推。只存储需要用到的状态。（如题，用到S(x-1)，S(x-2)，S(x-3)）</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081605064.png" alt="image-20221003214013481"></p>
+<h3 id="状态更新"><a href="#状态更新" class="headerlink" title="状态更新"></a>状态更新</h3><p>状态更新必然是组合逻辑。在三个计算状态更新后现状态应即可更新，等待下一次时钟沿的存储。</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081605566.png" alt="image-20221003214323092"></p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>相当于从负下标开始，逐步赋值。第一个周期，x&#x3D;0。后S(x)-&gt;S(x-1)，S(x-1)-&gt;S(x-2)，S(x-2)-&gt;S(x-3),</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081610987.png" alt="image-20221003214451581"></p>
+<h2 id="常用组件搭配"><a href="#常用组件搭配" class="headerlink" title="常用组件搭配"></a>常用组件搭配</h2><h3 id="复位"><a href="#复位" class="headerlink" title="复位"></a>复位</h3><h4 id="异步复位"><a href="#异步复位" class="headerlink" title="异步复位"></a>异步复位</h4><p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081611107.jpg" alt="Logisim异步复位到0"></p>
+<p>当CLR（clear）为1时，reg直接变成0。</p>
+<h4 id="同步复位"><a href="#同步复位" class="headerlink" title="同步复位"></a>同步复位</h4><h5 id="方式1：MUX接收同步reset信号"><a href="#方式1：MUX接收同步reset信号" class="headerlink" title="方式1：MUX接收同步reset信号"></a>方式1：MUX接收同步reset信号</h5><p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081605749.jpg" alt="Logisim同步复位"></p>
+<p>要求“在clk上升沿时复位”。</p>
+<p>例：fsm</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081605365.png" alt="image-20221002101255735"></p>
+<h5 id="方式2-寄存器实现reset信号与clk信号同频"><a href="#方式2-寄存器实现reset信号与clk信号同频" class="headerlink" title="方式2:寄存器实现reset信号与clk信号同频"></a>方式2:寄存器实现reset信号与clk信号同频</h5><p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081605586.png" alt="image.png"></p>
+<h3 id="赋初始值"><a href="#赋初始值" class="headerlink" title="赋初始值"></a>赋初始值</h3><p>有赋初始值需要的电路，通常认为第一个周期是赋初始值（注意各模块的同频），之后的周期进行运算。</p>
+<h4 id="方式1：计数器-MUX"><a href="#方式1：计数器-MUX" class="headerlink" title="方式1：计数器+MUX"></a>方式1：计数器+MUX</h4><p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081611218.png" alt="image-20221003184927702"></p>
+<p>注意counter的设置。</p>
+<h3 id="在输出正确结果前输出0，在得到正确结果后保持输出"><a href="#在输出正确结果前输出0，在得到正确结果后保持输出" class="headerlink" title="在输出正确结果前输出0，在得到正确结果后保持输出"></a>在输出正确结果前输出0，在得到正确结果后保持输出</h3><h4 id="在得到正确结果后保持输出"><a href="#在得到正确结果后保持输出" class="headerlink" title="在得到正确结果后保持输出"></a>在得到正确结果后保持输出</h4><p>增加计数模块</p>
+<p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081611950.png" alt="image-20221003210324794"></p>
+<p>在周期数小于x时输出0，在周期数<strong>大于等于</strong>x时输出1。应注意比较器默认为有符号比较，一般需要调至无符号比较。</p>
+<p>有两种选择：</p>
+<ol>
+<li>冻结计算逻辑寄存器(freeze信号传入计算逻辑，当周期到达后freeze反转传入寄存器使能端（默认传入冻结信号为1，使能端为0冻结）)</li>
+<li>冻结输出MUX中的输入信号值，实现较为复杂。因为计数是在大于等于时freeze输出1，所以要保证freeze信号转为1时，传入信号仍能被更新进入MUX，下一周期才冻结。</li>
+</ol>
+<h4 id="在输出正确结果前输出0"><a href="#在输出正确结果前输出0" class="headerlink" title="在输出正确结果前输出0"></a>在输出正确结果前输出0</h4><p><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301081611172.png" alt="image-20221003215129699"></p>
+<p>只需让freeze在第x周期前为0，在第x周期及之后为1即可。用上文计数模块实现。</p>
+<p>input的freeze需到计算逻辑中，增加freeze输入，放到寄存器使能端（记得取反）。</p>
+<h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><h3 id="1-增加输入个数应同-2x"><a href="#1-增加输入个数应同-2x" class="headerlink" title="1.增加输入个数应同+2x"></a>1.增加输入个数应同+2x</h3><p>比如一个与门，现在有三个输入口，那么现在有增加指令的需求，三个输入口已不能满足需要，应增加输入，这时应增加为5个，可以避免重新接线。</p>
+<p>同理，2个输入口应增加为4个&#x2F;6个</p>
+<h3 id="2-善用Tunnel"><a href="#2-善用Tunnel" class="headerlink" title="2.善用Tunnel"></a>2.善用Tunnel</h3><p>可读性++</p>
+<h3 id="3-善用快捷键"><a href="#3-善用快捷键" class="headerlink" title="3.善用快捷键"></a>3.善用快捷键</h3><p>数字键1-9输入引脚数</p>
+<p>ctrl+1-9工具切换</p>
+<p>alt+1-9位宽切换</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/BUAA-CO/">BUAA_CO</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301062024793.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/01/07/%E8%AE%A1%E7%BB%84/verilog%E5%9F%BA%E7%A1%80/"><img class="next-cover" src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301062024793.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">verilog基础</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/01/07/%E8%AE%A1%E7%BB%84/verilog%E5%9F%BA%E7%A1%80/" title="verilog基础"><img class="cover" src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301062024793.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-07</div><div class="title">verilog基础</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2023/01/02/gxzDbVSKJ41L69j.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Kafka</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Kafka-Hatsune"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Kafka-Hatsune" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:catniner@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Logisim%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">Logisim学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%83%E5%99%A8%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">常用元器件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gates-%E9%97%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">Gates 门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Odd-Parity-%E5%A5%87%E6%A0%A1%E9%AA%8C-x2F-Even-Parity-%E5%81%B6%E6%A0%A1%E9%AA%8C"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.Odd Parity 奇校验&#x2F;Even Parity 偶校验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Controlled-Buffer-%E5%8F%97%E6%8E%A7%E7%BC%93%E5%86%B2%E5%99%A8-x2F-%E4%B8%89%E6%80%81%E9%97%A8"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">2.Controlled Buffer 受控缓冲器&#x2F;三态门</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Plexers-%E5%A4%8D%E7%94%A8%E5%99%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">Plexers 复用器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Multiplexer-%E5%A4%9A%E8%B7%AF%E9%80%89%E6%8B%A9%E5%99%A8-MUX"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.Multiplexer 多路选择器 MUX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Demultiplexer-%E8%A7%A3%E5%A4%8D%E7%94%A8%E5%99%A8-DMX"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">2.Demultiplexer 解复用器 DMX</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Three-state-%E4%B8%89%E6%80%81%E9%80%89%E9%A1%B9"><span class="toc-number">1.1.2.2.1.</span> <span class="toc-text">Three-state?三态选项</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Decoder-%E8%AF%91%E7%A0%81%E5%99%A8-Decd"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">3.Decoder 译码器 Decd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Pirority-Encoder-%E4%BC%98%E5%85%88%E7%BC%96%E7%A0%81%E5%99%A8-Pri"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">4.Pirority Encoder 优先编码器 Pri</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-Bit-Selector-%E4%BD%8D%E9%80%89%E6%8B%A9%E5%99%A8-Sel"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">5.Bit Selector 位选择器 Sel</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Arithmetic-%E8%BF%90%E7%AE%97%E5%99%A8%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">Arithmetic 运算器（部分）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Negator-%E5%8F%96%E5%8F%8D%E5%99%A8"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">1.Negator 取反器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Shifter-%E7%A7%BB%E4%BD%8D%E5%99%A8"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">2.Shifter 移位器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Bit-Adder-%E9%80%90%E4%BD%8D%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">3.Bit Adder 逐位加法器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Bit-Finder-%E4%BD%8D%E6%9F%A5%E6%89%BE%E5%99%A8"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">4.Bit Finder 位查找器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-number">1.2.</span> <span class="toc-text">有限状态机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mealy%E5%9E%8B%E5%92%8CMoore%E5%9E%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">Mealy型和Moore型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB-x2F-%E6%AC%A1%E6%80%81%E9%80%BB%E8%BE%91%E6%97%A0%E9%9C%80%E8%80%83%E8%99%91Mealy%E5%92%8CMoore%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%82"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">状态转移&#x2F;次态逻辑无需考虑Mealy和Moore型的区别。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mealy-or-Moore"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Mealy or Moore?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97"><span class="toc-number">1.3.</span> <span class="toc-text">使用时序电路实现函数计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB"><span class="toc-number">1.3.1.</span> <span class="toc-text">状态转移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9B%B4%E6%96%B0"><span class="toc-number">1.3.2.</span> <span class="toc-text">状态更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.3.3.</span> <span class="toc-text">初始化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6%E6%90%AD%E9%85%8D"><span class="toc-number">1.4.</span> <span class="toc-text">常用组件搭配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E4%BD%8D"><span class="toc-number">1.4.1.</span> <span class="toc-text">复位</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">异步复位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E5%A4%8D%E4%BD%8D"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">同步复位</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F1%EF%BC%9AMUX%E6%8E%A5%E6%94%B6%E5%90%8C%E6%AD%A5reset%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.4.1.2.1.</span> <span class="toc-text">方式1：MUX接收同步reset信号</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F2-%E5%AF%84%E5%AD%98%E5%99%A8%E5%AE%9E%E7%8E%B0reset%E4%BF%A1%E5%8F%B7%E4%B8%8Eclk%E4%BF%A1%E5%8F%B7%E5%90%8C%E9%A2%91"><span class="toc-number">1.4.1.2.2.</span> <span class="toc-text">方式2:寄存器实现reset信号与clk信号同频</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%8B%E5%88%9D%E5%A7%8B%E5%80%BC"><span class="toc-number">1.4.2.</span> <span class="toc-text">赋初始值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F1%EF%BC%9A%E8%AE%A1%E6%95%B0%E5%99%A8-MUX"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">方式1：计数器+MUX</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E8%BE%93%E5%87%BA%E6%AD%A3%E7%A1%AE%E7%BB%93%E6%9E%9C%E5%89%8D%E8%BE%93%E5%87%BA0%EF%BC%8C%E5%9C%A8%E5%BE%97%E5%88%B0%E6%AD%A3%E7%A1%AE%E7%BB%93%E6%9E%9C%E5%90%8E%E4%BF%9D%E6%8C%81%E8%BE%93%E5%87%BA"><span class="toc-number">1.4.3.</span> <span class="toc-text">在输出正确结果前输出0，在得到正确结果后保持输出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E5%BE%97%E5%88%B0%E6%AD%A3%E7%A1%AE%E7%BB%93%E6%9E%9C%E5%90%8E%E4%BF%9D%E6%8C%81%E8%BE%93%E5%87%BA"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">在得到正确结果后保持输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E8%BE%93%E5%87%BA%E6%AD%A3%E7%A1%AE%E7%BB%93%E6%9E%9C%E5%89%8D%E8%BE%93%E5%87%BA0"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">在输出正确结果前输出0</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="toc-number">1.5.</span> <span class="toc-text">小技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E4%B8%AA%E6%95%B0%E5%BA%94%E5%90%8C-2x"><span class="toc-number">1.5.1.</span> <span class="toc-text">1.增加输入个数应同+2x</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%96%84%E7%94%A8Tunnel"><span class="toc-number">1.5.2.</span> <span class="toc-text">2.善用Tunnel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%96%84%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">1.5.3.</span> <span class="toc-text">3.善用快捷键</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/01/08/%E8%AE%A1%E7%BB%84/logisim%E5%9F%BA%E7%A1%80/" title="logisim基础"><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301062024793.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="logisim基础"/></a><div class="content"><a class="title" href="/2023/01/08/%E8%AE%A1%E7%BB%84/logisim%E5%9F%BA%E7%A1%80/" title="logisim基础">logisim基础</a><time datetime="2023-01-08T08:01:02.000Z" title="Created 2023-01-08 16:01:02">2023-01-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/07/%E8%AE%A1%E7%BB%84/verilog%E5%9F%BA%E7%A1%80/" title="verilog基础"><img src="https://cdn.staticaly.com/gh/Kafka-Hatsune/BlogCDN@main/img202301062024793.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="verilog基础"/></a><div class="content"><a class="title" href="/2023/01/07/%E8%AE%A1%E7%BB%84/verilog%E5%9F%BA%E7%A1%80/" title="verilog基础">verilog基础</a><time datetime="2023-01-07T03:32:02.000Z" title="Created 2023-01-07 11:32:02">2023-01-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By Kafka</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/tags/"]):not([href="/categories/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>
